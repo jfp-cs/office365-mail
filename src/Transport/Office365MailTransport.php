@@ -144,7 +144,8 @@ class Office365MailTransport extends AbstractTransport
             'body' => [
                 'contentType' => $message->getHtmlBody() ? 'html' : 'text',
                 'content' => $message->getHtmlBody() ? $message->getHtmlBody() : $message->getTextBody()
-            ]
+            ],
+            'importance' => $message->getPriority() < 3 ? 'high' : ($message->getPriority() > 3 ? 'low' : 'normal'),
         ];
         $messageData = ['message' => $messageData];
 
